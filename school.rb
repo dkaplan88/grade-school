@@ -4,20 +4,19 @@ class School
   end
 
   def to_hash
-    @school
+    Hash[@school.sort] # Sort School by Grade
+  end
+
+  def grade(grade)
+    @school[grade] || []
   end
 
   def add(name, grade)
     if @school.has_key?(grade)
       @school[grade] << name
-      @school[grade].sort!
+      @school[grade].sort! # Sort Students
     else
       @school.merge!(grade => [name])
-      @school = Hash[@school.sort]
     end
-  end
-
-  def grade(grade)
-    @school[grade] || []
   end
 end
